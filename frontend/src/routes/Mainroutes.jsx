@@ -4,7 +4,7 @@ import Products from "../pages/Products"
 import Login from "../pages/Login"
 import Register from "../pages/Register"
 import CreateProduct from "../pages/admin/CreateProduct"
-import ProductDetails from "../pages/admin/UpdateProduct"
+import ProductDetails from "../pages/admin/ProductDetails"
 
 
 const Mainroutes = () => {

@@ -15,7 +15,7 @@ function App() {
 
   }, [])
   return (
-    <div className="px-[10%] text-white font-thin w-screen h-screen bg-gray-800">
+    <div className="overflow-auto px-[10%] text-white font-thin w-screen h-screen bg-gray-800">
       <Nav />
       <Mainroutes /></div>
   )
