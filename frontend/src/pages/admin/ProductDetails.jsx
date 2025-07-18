@@ -6,7 +6,7 @@ import { asyncdeleteproduct, asyncupdateproduct } from "../../store/actions/prod
 const ProductDetails = () => {
 
   const { id } = useParams()
-  const {productReducer: {products}, userReducer: {users},} = useSelector((state) => state)
+  const {productReducer: {products}, usersReducer: {users},} = useSelector((state) => state)
   const product = products?.find((product) => product.id == id)
 console.log(users, product)
 

@@ -6,6 +6,13 @@
       "email": "shobbitjain13@gmail.com",
       "password": "123456",
       "isAdmin": true
+    },
+    {
+      "id": "KPUKAyXDVwchLur5OYXUs",
+      "username": "demo",
+      "email": "demo@gmail.com",
+      "password": "demo",
+      "isAdmin": false
     }
   ],
   "products": [

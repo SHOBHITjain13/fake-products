@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom"
 import axios from "../../api/axiosconfig"
-import { loaduser } from "../reducers/userSlice"
+import { loaduser, removeuser } from "../reducers/userSlice"
 
 
 
@@ -14,9 +14,10 @@ export const asynccurrentuser = () => async(dispatch, getState) => {
 }
 }
 
-export const asynclogoutuser = (user) => async(dispatch, getState) => {
+export const asynclogoutuser = () => async(dispatch, getState) => {
     try{
      localStorage.removeItem("user")
+     dispatch(removeuser())
      console.log("user log-out")
     }catch (error) { 
         console.log(error)
