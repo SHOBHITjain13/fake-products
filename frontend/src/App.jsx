@@ -3,7 +3,7 @@ import Nav from "./components/Nav"
 import Mainroutes from "./routes/Mainroutes"
 import { asynccurrentuser } from "./store/actions/userActions"
 import { useDispatch } from "react-redux"
-import { asyncloadproduct } from "./store/actions/productActions"
+import { asyncloadproducts } from "./store/actions/productActions"
 
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(asynccurrentuser());
-    dispatch(asyncloadproduct());
+    dispatch(asyncloadproducts());
 
   }, [])
   return (

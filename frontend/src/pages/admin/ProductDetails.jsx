@@ -1,13 +1,17 @@
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
+import { asyncdeleteproduct, asyncupdateproduct } from "../../store/actions/productActions"
 
 const ProductDetails = () => {
 
   const { id } = useParams()
-  const products = useSelector((state) => state.productReducer.products)
+  const {productReducer: {products}, userReducer: {users},} = useSelector((state) => state)
   const product = products?.find((product) => product.id == id)
-  console.log(product)
+console.log(users, product)
+
+
+
 
 
   const { register, reset, handleSubmit } = useForm({
@@ -22,14 +26,18 @@ const ProductDetails = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
   const UpdateProductHandler = (product) => {
+    dispatch(asyncupdateproduct(id, product));
 
-    console.log(product)
-    dispatch(asyncupdateproduct(product));
   }
 
 
+  const Deletehandler = () => {
+    dispatch(asyncdeleteproduct(id))
+    navigate("/products")
+  }
+
   return product? (
-    <div className="">
+    <>
       <div className="w-full flex">
 
         <img className="w-1/2 h-1/2 object-cover" src={product.image} alt="" />
@@ -40,15 +48,12 @@ const ProductDetails = () => {
           <h2 className="mb-5 text-2xl text-green-400">${product.price}</h2>
           <p>{product.description}</p>
           <button>Add to cart</button>
-
-          <div>
-            <button></button>
-          </div>
         </div>
       </div>
       <hr />
 
-      <form onSubmit={handleSubmit(UpdateProductHandler)} 
+
+      {users && users?.isAdmin &&   <form onSubmit={handleSubmit(UpdateProductHandler)} 
       className="w-full flex flex-col justify-start items-start" action="">
         <input
           {...register("image")}
@@ -82,10 +87,14 @@ const ProductDetails = () => {
           placeholder="category" />
 
         <button className="mt-5 px-4 py-2 bg-blue-400 rounded">Update Prodct</button>
+          <button type="button" onClick={Deletehandler} className="mt-5 px-4 py-2 bg-red-400 rounded">Delete Prodct</button>
+      </form>} 
 
-      </form>
+    
 
-    </div>
+         
+
+    </>
   ): ( "loading...")
 }
 

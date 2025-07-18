@@ -1,9 +1,10 @@
+import { Navigate } from "react-router-dom"
 import axios from "../../api/axiosconfig"
 import { loaduser } from "../reducers/userSlice"
 
 
 
-export const asynccurrentuser = (user) => async(dispatch, getState) => {
+export const asynccurrentuser = () => async(dispatch, getState) => {
     try{
      const user = JSON.parse(localStorage.getItem("user"))
      if(user) dispatch(loaduser(user))
@@ -31,6 +32,8 @@ export const asyncloginuser = (user) => async(dispatch, getState) => {
         console.log(error)
 }
 }
+
+
 
 
 export const asyncregisterusers = (user) => async (dispatch, getState) => {
