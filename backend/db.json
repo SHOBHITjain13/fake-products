@@ -1,18 +1,18 @@
 {
   "users": [
     {
-      "id": "nK9bdK3WLe5hTBTn5WyVr",
-      "username": "Shobhit",
-      "email": "shobbitjain13@gmail.com",
-      "password": "123456",
-      "isAdmin": true
-    },
-    {
       "id": "KPUKAyXDVwchLur5OYXUs",
       "username": "demo",
       "email": "demo@gmail.com",
       "password": "demo",
       "isAdmin": false
+    },
+    {
+      "id": "J3vpeLUo5ZrAVYw_rn9OP",
+      "username": "Shobhit",
+      "email": "shobbitjain13@gmail.com",
+      "password": "123456",
+      "isAdmin": true
     }
   ],
   "products": [
