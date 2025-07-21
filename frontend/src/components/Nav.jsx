@@ -14,12 +14,13 @@ const Nav = () => {
 
       {user ? (
         <>
-          {user && user?.isAdmin &&
-            <NavLink to="/admin/create-product">Create Product</NavLink>}
+          {user && user?.isAdmin && (
+            <NavLink to="/admin/create-product">Create Product</NavLink>)}
 
 
 
           <NavLink to="/admin/user-profile">settings</NavLink>
+           <NavLink to="/cart">Cart</NavLink>
 
         </>
       ) : (

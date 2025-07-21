@@ -1,18 +1,33 @@
 {
   "users": [
     {
-      "id": "KPUKAyXDVwchLur5OYXUs",
-      "username": "demo",
-      "email": "demo@gmail.com",
-      "password": "demo",
-      "isAdmin": false
-    },
-    {
       "id": "J3vpeLUo5ZrAVYw_rn9OP",
       "username": "Shobhit",
       "email": "shobbitjain13@gmail.com",
       "password": "123456",
-      "isAdmin": true
+      "isAdmin": true,
+      "cart": [
+        {
+          "product": {
+            "id": "7taU7qqchr31Ocyn10RaR",
+            "image": "https://plus.unsplash.com/premium_photo-1751835491662-e09a83886291?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw2fHx8ZW58MHx8fHx8",
+            "title": "toy hourse swing",
+            "price": "120",
+            "description": "This is amazing swing for kids with glowing light features",
+            "category": "Toy",
+            "cart": []
+          },
+          "quantity": 8
+        }
+      ]
+    },
+    {
+      "id": "JCCL_IxUcdT91HOQA2B8l",
+      "username": "demo",
+      "email": "demo@gmail.com",
+      "password": "demo",
+      "isAdmin": false,
+      "cart": []
     }
   ],
   "products": [
@@ -22,8 +37,8 @@
       "title": "toy hourse swing",
       "price": "120",
       "description": "This is amazing swing for kids with glowing light features",
-      "category": "Toy"
+      "category": "Toy",
+      "cart": []
     }
-  ],
-  "carts": []
+  ]
 }
