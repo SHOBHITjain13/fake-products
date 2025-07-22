@@ -6,20 +6,7 @@
       "email": "shobbitjain13@gmail.com",
       "password": "123456",
       "isAdmin": true,
-      "cart": [
-        {
-          "product": {
-            "id": "7taU7qqchr31Ocyn10RaR",
-            "image": "https://plus.unsplash.com/premium_photo-1751835491662-e09a83886291?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw2fHx8ZW58MHx8fHx8",
-            "title": "toy hourse swing",
-            "price": "120",
-            "description": "This is amazing swing for kids with glowing light features",
-            "category": "Toy",
-            "cart": []
-          },
-          "quantity": 8
-        }
-      ]
+      "cart": []
     },
     {
       "id": "JCCL_IxUcdT91HOQA2B8l",
@@ -39,6 +26,14 @@
       "description": "This is amazing swing for kids with glowing light features",
       "category": "Toy",
       "cart": []
+    },
+    {
+      "id": "yM51URuRmwGP-satGnPZh",
+      "image": "https://plus.unsplash.com/premium_photo-1752658399864-889546a87222?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxOXx8fGVufDB8fHx8fA%3D%3D",
+      "title": "Unique ports",
+      "price": "1230",
+      "description": "This is very unique pots made by ula ula designer",
+      "category": "pots"
     }
   ]
 }

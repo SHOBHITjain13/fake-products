@@ -1,25 +1,36 @@
 import { useDispatch, useSelector } from "react-redux"
-
+import { asyncupdateuser } from "../store/actions/userActions"
 
 const Cart = () => {
     const dispatch = useDispatch()
     const users = useSelector((state) => state.usersReducer.users)
-    const products = useSelector((state) => state.productReducer.products)
+    // const products = useSelector((state) => state.productReducer.products)
 
     const IncreaseQuantityHandler = (index, product) => {
         const copyuser = { ...users, cart: [...users.cart] };
 
         copyuser.cart[index] = {
-            product,
+           ...users.cart[index],
             quantity: copyuser.cart[index].quantity + 1,
         }
         console.log(copyuser)
-        // dispatch(asyncupdateuser(copyuser.id, copyuser))
+        dispatch(asyncupdateuser(copyuser.id, copyuser))
     }
 
 
-    const DecreaseQuantityHandler = () => {
+    const DecreaseQuantityHandler = (index, product) => {
+        const copyuser = { ...users, cart: [...users.cart] };
 
+        if (users.cart[index].quantity >0) {
+            copyuser.cart[index] = {
+                ...users.cart[index],
+                quantity: copyuser.cart[index].quantity - 1,
+            }
+        }else{
+            copyuser.cart.splice(index, 1);
+        }
+        console.log(copyuser)
+        dispatch(asyncupdateuser(copyuser.id, copyuser))
     }
 
     const cartItems = users.cart.map((c, index) => {

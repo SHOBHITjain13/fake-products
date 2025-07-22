@@ -12,7 +12,7 @@ const CreateProduct = () => {
     product.id = nanoid();
     console.log(product)
     dispatch(asynccreateproduct(product));
-    navigate('/product');
+    navigate('/');
   }
 
 
