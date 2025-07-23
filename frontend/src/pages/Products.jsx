@@ -1,12 +1,35 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { asynccurrentuser, asyncupdateuser } from "../store/actions/userActions"
+import { useEffect, useState } from "react"
+import axios from "../api/axiosconfig"
+import InfiniteScroll from "react-infinite-scroll-component"
 
 const Products = () => {
 
   const dispatch = useDispatch()
   const users = useSelector((state) => state.usersReducer.users)
-  const products = useSelector((state) => state.productReducer.products)
+  // const products = useSelector((state) => state.productReducer.products)
+    const [products, setproducts] = useState([])
+    const [hasMore, sethasMore] = useState(true)
+
+    const fetchproducts = async() => {
+      try{
+        const {data} = await axios.get(`/products?_limit=6&_start=${products.length}`)
+        if(data){
+          sethasMore(true)
+          setproducts([...products, ...data])
+        }else{
+          sethasMore(false)
+        }
+      } catch (error) {
+        console.assertlog(error)
+      }
+    }
+
+    useEffect(() => {
+      fetchproducts()
+    }, [])
 
   const AddtoCartHandler = (product) => {
     const copyuser = { ...users, cart: [...users.cart] };
@@ -44,10 +67,23 @@ const Products = () => {
   })
 
 
-  return products.length > 0 ? <div
-    className="overflow-auto flex flex-wrap">{renderproduct}
+  return products.length > 0 ? (
+      
+      <InfiniteScroll className="overflow-auto flex flex-wrap" 
+      dataLength={products.length} 
+      next={fetchproducts} 
+      hasMore={hasMore}
+      loader={<h4>Loading...</h4>}
+  endMessage={
+    <p style={{ textAlign: 'center' }}>
+      <b>Yay! You have seen it all</b>
+    </p>}>
+      
+      {renderproduct}
 
-  </div> : "Loding..."
+  </InfiniteScroll>
+
+) : ( "Loding...")
 }
 
 export default Products
