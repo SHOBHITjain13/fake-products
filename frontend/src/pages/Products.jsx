@@ -1,96 +1,40 @@
-import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
-import { asyncupdateuser } from "../store/actions/userActions"
-import { Suspense, useEffect, useState } from "react"
-import axios from "../api/axiosconfig"
+import { lazy, Suspense, useEffect, useState } from "react"
 import InfiniteScroll from "react-infinite-scroll-component"
+import UseinfiniteProduct from "../utils/UseinfiniteProduct"
+const ProductTemplate = lazy( () => import("../components/ProductTemplate"))
+
 
 const Products = () => {
 
-  const dispatch = useDispatch()
-  const users = useSelector((state) => state.usersReducer.users)
-  // const products = useSelector((state) => state.productReducer.products)
-  const [products, setproducts] = useState([])
-  const [hasMore, sethasMore] = useState(true)
+const {products, hasMore, fetchproducts} = UseinfiniteProduct()
 
-  const fetchproducts = async () => {
-  try {
-    const { data } = await axios.get(
-      `/products?_limit=6&_start=${products.length}`
-    )
-    if (data.length === 0) {
-      sethasMore(false)
-    } else {
-      setproducts(prev => [...prev, ...data])
-    }
-  } catch (error) {
-    console.log(error)
-  }
-}
+  return ( <InfiniteScroll
+    dataLength={products.length}
+    next={fetchproducts}
+    hasMore={hasMore}
+    loader={<h4>Loading...</h4>}
+    endMessage={
+      <p style={{ textAlign: 'center' }}>
+        <b>Yay! You have seen it all</b>
+      </p>}>
 
 
-  useEffect(() => {
-    fetchproducts()
-  }, [])
+    <div className="w-full flex flex-wrap"  >
 
-  const AddtoCartHandler = (product) => {
-    const copyuser = { ...users, cart: [...users.cart] };
-    const x = copyuser.cart.findIndex((c) => c?.product?.id == product.id)
-
-    if (x == -1) {
-      copyuser.cart.push({ product, quantity: 1 })
-    } else {
-      copyuser.cart[x] = { product, quantity: copyuser.cart[x].quantity + 1, }
-
-    }
-    dispatch(asyncupdateuser(copyuser.id, copyuser))
-  }
+      {products.map((product) =>
+      (<Suspense key={product.id} fallback={<h1 className="text-center text-5xl text-yellow-500">LOADING...</h1>}>
+        
+        <ProductTemplate  product={product} />
+      </Suspense>))}
 
 
-  const renderproduct = products.map((product) => {
 
-    return <div className="w-[31%] mr-3 mb-3 border shadow" key={product.id}>
-      <img className="w-full h-[30vh] object-cover" src={product.image} alt="" />
-      <h1>{product.title}</h1>
-      <small>{product.description.slice(0, 100)}...</small>
-      <div className="p-3 mt-3 flex justify-between items-center">
-        <p>{product.price}</p>
 
-        <button
-          onClick={() => AddtoCartHandler(product)}>
-          Add to Cart
-        </button>
-      </div>
-
-      <Link
-        className="block m-auto w-1/2 "
-        to={`/product/${product.id}`}>More Info</Link>
     </div>
-  })
 
 
-  return <InfiniteScroll
-      dataLength={products.length}
-      next={fetchproducts}
-      hasMore={hasMore}
-      loader={<h4>Loading...</h4>}
-      endMessage={
-        <p style={{ textAlign: 'center' }}>
-          <b>Yay! You have seen it all</b>
-        </p>}>
-
-
-      <div className="overflow-auto flex flex-wrap"  >
-
-        <Suspense fallback={<h1 className="text-center text-5xl text-yellow-400">LOADING...</h1>}>
-        {renderproduct}
-        </Suspense>
-
-      </div>
-
-
-    </InfiniteScroll>
-
+  </InfiniteScroll>
+  )
 }
 
 export default Products

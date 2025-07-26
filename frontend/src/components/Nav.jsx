@@ -8,7 +8,7 @@ const Nav = () => {
 
 
   return (
-    <nav className="mb-10 flex justify-center items-center gap-x-5 p-5">
+    <nav className=" mb-10 flex justify-center items-center gap-x-5 p-5">
 
       <NavLink to="/">Home</NavLink>
 

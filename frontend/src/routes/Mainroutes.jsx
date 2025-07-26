@@ -5,12 +5,12 @@ import UnauthWrapper from "./UnauthWrapper"
 const Products = lazy(() => import("../pages/Products"))
 const Cart = lazy(() => import("../pages/Cart"))
 const AuthWrapper = lazy(() => import("./AuthWrapper"))
-const PageNotFound = lazy(() => import("../pages/PageNotFound"))
 const UserProfile = lazy(() => import("../pages/user/UserProfile"))
 const ProductDetails = lazy(() => import("../pages/admin/ProductDetails"))
 const CreateProduct = lazy(() => import("../pages/admin/CreateProduct"))
 const Register = lazy(() => import("../pages/Register"))
 const Login = lazy(() => import("../pages/Login"))
+const PageNotFound = lazy(() => import("../pages/PageNotFound"))
 
 
 
